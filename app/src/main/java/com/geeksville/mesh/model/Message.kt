@@ -4,6 +4,8 @@ import com.geeksville.mesh.MeshProtos
 import com.geeksville.mesh.MeshProtos.Routing
 import com.geeksville.mesh.MessageStatus
 import com.geeksville.mesh.R
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 val Routing.Error.stringRes: Int
     get() = when (this) {
@@ -52,3 +54,14 @@ data class Message(
         return title to text
     }
 }
+
+@Serializable
+data class IntentMessage (
+    val message: String,
+    @SerialName("contact_key")
+    val contactKey: String,
+    @SerialName("contact_name")
+    val contactName: String,
+    @SerialName("auto_send")
+    val autoSend: Boolean,
+)
