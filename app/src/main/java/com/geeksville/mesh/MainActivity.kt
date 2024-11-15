@@ -344,6 +344,7 @@ class MainActivity : AppCompatActivity(), Logging {
                         }
                     } catch (e: SerializationException) {
                         debug("Failed to decode JSON: ${e.message}; falling back to default message")
+                        shareMessages(text)
                     }
                 }
             }
@@ -622,6 +623,13 @@ class MainActivity : AppCompatActivity(), Logging {
         model.setCurrentTab(0)
         if (contactKey != null && contactName != null && message != null) {
             supportFragmentManager.navigateToPreInitMessages(contactKey, contactName, message)
+        }
+    }
+
+    private fun shareMessages(message: String?) {
+        model.setCurrentTab(0)
+        if (message != null) {
+            supportFragmentManager.navigateToShareMessage(message)
         }
     }
 
